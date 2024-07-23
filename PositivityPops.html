@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Centered Image with Name, Login, and Levels</title>
+    <style>
+        /* CSS styles */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: lavender; /* Lavender background */
+            margin: 0;
+            padding: 0;
+            position: relative; /* Needed for absolute positioning */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .content {
+            text-align: center;
+            background-color: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            position: relative; /* Needed for z-index */
+            z-index: 1; /* Ensure content is above balloons */
+        }
+        .image {
+            width: 100px; /* Adjust width as needed */
+            height: auto; /* Maintain aspect ratio */
+        }
+        p {
+            margin-top: 10px;
+        }
+        .button {
+            background-color: purple; /* Lilac color */
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+        .button:hover {
+            background-color: darkpurple; /* Darker lilac color on hover */
+        }
+        .login-form, .signup-form, .facebook-login, .google-login, .positivity-pops, .levels-page {
+            background-color: rgba(255, 255, 255, 0.8); /* Semi-transparent white */
+            padding: 20px;
+            border-radius: 15px; /* Rounded corners */
+            box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.1);
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 1; /* Ensure form is above balloons */
+        }
+        input[type="text"], input[type="password"], input[type="email"] {
+            width: calc(100% - 20px); /* Adjusting for padding */
+            padding: 10px;
+            margin: 5px 0;
+            box-sizing: border-box;
+            border: none; /* Removed border */
+            border-radius: 3px;
+        }
+        input[type="submit"], .next-button, .back-button {
+            width: calc(50% - 10px); /* Adjusting for padding */
+            background-color: #007bff;
+            color: #fff;
+            padding: 10px;
+            border: none; /* Removed border */
+            border-radius: 3px;
+            cursor: pointer;
+            margin-top: 10px; /* Added margin to separate buttons */
+        }
+        input[type="submit"]:hover, .next-button:hover, .back-button:hover {
+            background-color: #0056b3;
+        }
+
+        /* Balloons */
+        .balloon {
+            position: absolute;
+            border-radius: 50%;
+            background-color: transparent;
+            animation: float 8s ease-in-out infinite;
+            transform-origin: center bottom;
+        }
+
+        .red-balloon {
+            width: 40px;
+            height: 60px;
+            background-color: #FF6347; /* Red */
+        }
+
+        .blue-balloon {
+            width: 40px;
+            height: 60px;
+            background-color: #4169E1; /* Royal Blue */
+        }
+
+        .yellow-balloon {
+            width: 40px;
+            height: 60px;
+            background-color: #FFFF00; /* Yellow */
+        }
+
+        .green-balloon {
+            width: 40px;
+            height: 60px;
+            background-color: #32CD32; /* Lime Green */
+        }
+
+        .string {
+            position: absolute;
+            width: 1px;
+            height: 40px;
+            background-color: black;
+            bottom: -40px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+            100% { transform: translateY(0px); }
+        }
+
+        /* Level button styles */
+        .level {
+            background-color: #007bff; /* Default blue color */
+            color: #fff;
+            padding: 10px;
+            border: none; /* Removed border */
+            border-radius: 3px;
+            cursor: pointer;
+            margin-top: 5px; /* Added margin between level buttons */
+        }
+
+        /* Remove outer box for levels page */
+        .levels-page {
+            background-color: transparent; /* Transparent background */
+            padding: 0; /* No padding */
+            box-shadow: none; /* No shadow */
+        }
+    </style>
+</head>
+<body>
+    <!-- Balloons -->
+    <!-- Red Balloons -->
+    <div class="red-balloon balloon" style="top: 10%; left: 10%;">
+        <div class="string"></div>
+    </div>
+    <div class="red-balloon balloon" style="top: 20%; left: 30%;">
+        <div class="string"></div>
+    </div>
+    <div class="red-balloon balloon" style="top: 30%; left: 50%;">
+        <div class="string"></div>
+    </div>
+    <div class="red-balloon balloon" style="top: 40%; left: 70%;">
+        <div class="string"></div>
+    </div>
+    <div class="red-balloon balloon" style="top: 50%; left: 90%;">
+        <div class="string"></div>
+    </div>
+    <!-- Blue Balloons -->
+    <div class="blue-balloon balloon" style="top: 15%; left: 20%;">
+        <div class="string"></div>
+    </div>
+    <div class="blue-balloon balloon" style="top: 25%; left: 40%;">
+        <div class="string"></div>
+    </div>
+    <div class="blue-balloon balloon" style="top: 35%; left: 60%;">
+        <div class="string"></div>
+    </div>
+    <div class="blue-balloon balloon" style="top: 45%; left: 80%;">
+        <div class="string"></div>
+    </div>
+    <div class="blue-balloon balloon" style="top: 55%; left: 10%;">
+        <div class="string"></div>
+    </div>
+    <!-- Yellow Balloons -->
+    <div class="yellow-balloon balloon" style="top: 20%; left: 90%;">
+        <div class="string"></div>
+    </div>
+    <div class="yellow-balloon balloon" style="top: 40%; left: 10%;">
+        <div class="string"></div>
+    </div>
+    <div class="yellow-balloon balloon" style="top: 60%; left: 30%;">
+        <div class="string"></div>
+    </div>
+    <div class="yellow-balloon balloon" style="top: 80%; left: 50%;">
+        <div class="string"></div>
+    </div>
+    <div class="yellow-balloon balloon" style="top: 90%; left: 70%;">
+        <div class="string"></div>
+    </div>
+    <!-- Green Balloons -->
+    <div class="green-balloon balloon" style="top: 25%; left: 70%;">
+        <div class="string"></div>
+    </div>
+    <div class="green-balloon balloon" style="top: 35%; left: 90%;">
+        <div class="string"></div>
+    </div>
+    <div class="green-balloon balloon" style="top: 55%; left: 10%;">
+        <div class="string"></div>
+    </div>
+    <div class="green-balloon balloon" style="top: 75%; left: 30%;">
+        <div class="string"></div>
+    </div>
+    <div class="green-balloon balloon" style="top: 95%; left: 50%;">
+        <div class="string"></div>
+    </div>
+
+    <!-- Login Form -->
+    <div class="content login-form" id="login-form">
+        <h2>Login</h2>
+        <form action="#" method="post" id="login-form-element">
+            <input type="text" name="username" placeholder="Username" required><br>
+            <input type="password" name="password" placeholder="Password" required><br>
+            <input type="button" value="Login" onclick="showPositivityPops()">
+        </form>
+        <p>Don't have an account? <a href="#" onclick="showSignupForm()">Sign up</a></p>
+        <p>Or sign in via: <a href="#" onclick="showGoogleLogin()">Google</a> | <a href="#" onclick="showFacebookLogin()">Facebook</a></p>
+    </div>
+
+    <!-- Signup Form -->
+    <div class="content signup-form" id="signup-form" style="display: none;">
+        <h2>Sign Up</h2>
+        <form action="#" method="post" id="signup-form-element">
+            <input type="text" name="fullname" placeholder="Full Name" required><br>
+            <input type="email" name="email" placeholder="Email" required><br>
+            <input type="password" name="password" placeholder="Password" required><br>
+            <input type="submit" value="Sign Up">
+        </form>
+        <p>Already have an account? <a href="#" onclick="showLoginForm()">Login</a></p>
+    </div>
+
+    <!-- Facebook Login Page -->
+    <div class="content facebook-login" id="facebook-login" style="display: none;">
+        <h2>Logged in through Facebook successful</h2>
+        <button class="back-button" onclick="goBack()">Back</button>
+        <button class="next-button" onclick="showPositivityPops()">Next</button>
+    </div>
+
+    <!-- Google Login Page -->
+    <div class="content google-login" id="google-login" style="display: none;">
+        <h2>Logged in through Google successful</h2>
+        <button class="back-button" onclick="goBack()">Back</button>
+        <button class="next-button" onclick="showPositivityPops()">Next</button>
+    </div>
+
+    <!-- Positivity Pops Page -->
+    <div class="content positivity-pops" id="positivity-pops" style="display: none;">
+        <h2>Positivity Pops</h2>
+        <!-- Add image here -->
+        <img src="C:\Users\madha\Downloads\positivity-pops-high-resolution-logo.png" alt="Positivity Pops Image" class="image">
+        <p>Welcome to Positivity Pops! This is a positive space where you can explore uplifting content.</p>
+        <button class="back-button" onclick="goBack()">Back</button>
+        <button class="next-button" onclick="showLevels()">Next</button>
+    </div>
+
+    <!-- Levels Page -->
+    <div class="content levels-page" id="levels-page" style="display: none;">
+        <h2>Levels</h2>
+        <!-- Level buttons -->
+        <button class="level" onclick="openLevelPage('level1')">Level 1</button>
+        <button class="level" onclick="openLevelPage('level2')">Level 2</button>
+        <button class="level" onclick="openLevelPage('level3')">Level 3</button>
+        <button class="level" onclick="openLevelPage('level4')">Level 4</button>
+        <button class="level" onclick="openLevelPage('level5')">Level 5</button>
+        <button class="level" onclick="openLevelPage('level6')">Level 6</button>
+        <button class="level" onclick="openLevelPage('level7')">Level 7</button>
+        <button class="level" onclick="openLevelPage('level8')">Level 8</button>
+        <button class="level" onclick="openLevelPage('level9')">Level 9</button>
+        <button class="level" onclick="openLevelPage('level10')">Level 10</button>
+    </div>
+
+    <script>
+        // JavaScript functions to control visibility
+        function showLoginForm() {
+            hideAll();
+            document.getElementById('login-form').style.display = 'block';
+        }
+
+        function showSignupForm() {
+            hideAll();
+            document.getElementById('signup-form').style.display = 'block';
+        }
+
+        function showGoogleLogin() {
+            hideAll();
+            document.getElementById('google-login').style.display = 'block';
+        }
+
+        function showFacebookLogin() {
+            hideAll();
+            document.getElementById('facebook-login').style.display = 'block';
+        }
+
+        function showPositivityPops() {
+            hideAll();
+            document.getElementById('positivity-pops').style.display = 'block';
+        }
+
+        function goBack() {
+            hideAll();
+            document.getElementById('login-form').style.display = 'block';
+        }
+
+        function showLevels() {
+            hideAll();
+            document.getElementById('levels-page').style.display = 'block';
+        }
+
+        function hideAll() {
+            document.getElementById('login-form').style.display = 'none';
+            document.getElementById('signup-form').style.display = 'none';
+            document.getElementById('facebook-login').style.display = 'none';
+            document.getElementById('google-login').style.display = 'none';
+            document.getElementById('positivity-pops').style.display = 'none';
+            document.getElementById('levels-page').style.display = 'none';
+        }
+
+        // Function to open the new webpage for the specified level
+        function openLevelPage(level) {
+            // Define URLs for each level
+            var levelUrls = {
+                'level1': 'image.html', // Example URL for Level 1
+                'level2': 'pygame.html', // Example URL for Level 2
+                'level3': 'level3.html', // Example URL for Level 3
+                'level4': 'level4.html', // Example URL for Level 4
+                'level5': 'level5.html', // Example URL for Level 5
+                'level6': 'level6.html', // Example URL for Level 6
+                'level7': 'level7.html', // Example URL for Level 7
+                'level8': 'level8.html', // Example URL for Level 8
+                'level9': 'level9.html', // Example URL for Level 9
+                'level10': 'level10.html', // Example URL for Level 10
+            };
+
+            // Check if the level exists in the levelUrls object
+            if (levelUrls.hasOwnProperty(level)) {
+                // Redirect to the corresponding level URL
+                window.location.href = levelUrls[level];
+            } else {
+                console.error("URL for level '" + level + "' not found.");
+            }
+        }
+    </script>
+</body>
+</html>
